@@ -6,11 +6,14 @@ var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
-router.get('/', auth.isAuthenticated(), controller.index);
-router.get('/active', auth.isAuthenticated(), controller.getActive);
-router.get('/:productid', auth.isAuthenticated(), controller.show);
+// router.get('/', auth.isAuthenticated(), controller.index);
+router.get('/', controller.index);
+// router.get('/active', auth.isAuthenticated(), controller.getActive);
+router.get('/active', controller.getActive);
+// router.get('/:productid', auth.isAuthenticated(), controller.show);
+router.get('/:productid', controller.show);
 router.get('/category/:categoryid', controller.getByCategory);
-router.post('/', controller.create);
+router.post('/', auth.isAuthenticated(), controller.create);
 // router.put('/:id', controller.update);
 // router.patch('/:id', controller.update);
 // router.delete('/:id', controller.destroy);

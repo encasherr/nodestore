@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
 
     var token = auth.signToken(user.user_id, 'admin');
     console.log('user found - ' + token);
-    res.json({token: token});
+    res.send({token: token});
   })(req, res, next)
 });
 

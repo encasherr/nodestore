@@ -163,7 +163,7 @@ products.create = function(req, callback){
 }
 
 products.linkImage = function(req, callback){
-    console.log('product image upload called');
+    console.log('product image upload called: ' + req.file);
     var attribute = {};
     attribute.meta_key = 'img_url';
     attribute.meta_value = 'uploads/' + req.file.filename;

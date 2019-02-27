@@ -13,11 +13,11 @@ module.exports = {
           host     : '127.0.0.1',
           user     : 'root',
           password : '',
-          database : 'nodestore',
-          connectionString: 'mysql://root:'+'@127.0.0.1/' + 'nodestore' 
+          database : 'pkart',
+          connectionString: 'mysql://root:'+'@127.0.0.1/' + 'pkart' 
     },
 
-    clientDomain: 'http://localhost:8080'
+    clientDomain: 'http://localhost:4200'
     // clientDomain: 'http://localhost'
   // seedDB: true
 };

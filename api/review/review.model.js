@@ -8,19 +8,32 @@ reviews.getAllReviews = function(req, callback){
     var retrieveReviewsSql = getRetrieveReviewsSql();
     retrieveReviewsSql += ' where product_id = ?'
     db.query(retrieveReviewsSql,req.params.productid, function(err, reviews){
-        console.log('db reviews - ' + reviews.length);
-        callback(err, reviews);
+        if(reviews && reviews.length > 0)
+        {
+            console.log('db reviews - ' + reviews.length);
+            callback(err, reviews);
+        }
     })
 }
 
 reviews.create = function(req, callback){
     console.log('review model create called');
     db.query('INSERT INTO product_review SET ?', req.body, function(err, res){
-        if(err) console.log('error occured in insert ' + err);
-        console.log('insert id - ' + res.insertId);
+        if(err) console.log('error occured in review insert ' + err);
+        if(res)
+        {
+            console.log('insert id - ' + res.insertId);
+        }
+        else
+        {
+            console.log('could not insert review');
+        }
         db.query('select * from product_review where id = ?',res.insertId, function(err, reviews){
-            console.log('db reviews - ' + reviews.length);
-            callback(err, reviews);
+            if(reviews && reviews.length > 0)
+            { 
+                console.log('db reviews - ' + reviews.length);
+                callback(err, reviews);
+            }
         })        
     })
 }

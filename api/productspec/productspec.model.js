@@ -20,11 +20,21 @@ productspecs.create = function(req, callback){
     console.log('product spec create called');
     db.query('INSERT INTO product_spec SET ?', req.body, function(err,res){
         if(err) console.log('error occured in insert ' + err);
-        console.log('insert id - ' + res.insertId);
+        if(res)
+        {
+            console.log('insert id - ' + res.insertId);
+        }
+        else
+        {
+            console.log('could not insert spec');
+        }
         db.query('select * from product_spec where id = ?', res.insertId, function(err1,res1){
             if(err1) console.log('error occured in select ' + err1);
-            console.log('records returned - ' + res1.length);
-            callback(err1, res1);
+            if(res1 && res1.length > 0)
+            { 
+                console.log('records returned - ' + res1.length);
+                callback(err1, res1);
+            }
         })
     })
 }
